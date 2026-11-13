@@ -2,9 +2,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectmongo from './database/database.js';
 
-// نستوردو الروتات متاع الـ Auth والـ Users
+// نستوردو الروتات الكل متاع التطبيق
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
+import projetRoutes from './routes/projet.routes.js';
+import tacheRoutes from './routes/tache.routes.js';
 
 // نقراو المتغيرات من الـ .env
 dotenv.config();
@@ -19,9 +21,11 @@ app.get('/', (req, res) => {
   res.json({ message: 'السيرفر يخدم مريڨل 🚀' });
 });
 
-// نربطو روتات الأوتنتيكاسيون والمستعملين
+// نربطو الروتات في التطبيق (Routes)
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/projets', projetRoutes);
+app.use('/api/taches', tacheRoutes);
 
 // نلانسيو السيرفر بعد ما نكنكتيو على قاعدة البيانات MongoDB
 const PORT = process.env.PORT || 3000;
